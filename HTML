@@ -1,1 +1,101 @@
+base.html
 
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+    <h1 class="text-3xl font-bold text-slate-900 mb-2">Connect With Us</h1>
+    <p class="text-sm text-slate-500 mb-6">PROJECT</p>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="p-4 mb-6 rounded-xl text-sm font-semibold {% if 'success' in message.tags %}bg-emerald-50 text-emerald-700 border border-emerald-200{% else %}bg-rose-50 text-rose-700 border border-rose-200{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="space-y-5">
+        {% csrf_token %}
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Full Name</label><input type="text" name="name" value="{{ name }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Email Address</label><input type="email" name="email" value="{{ email }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Subject Matter</label><input type="text" name="subject" value="{{ subject }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Message Body</label><textarea name="message" rows="4" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition">{{ message }}</textarea></div>
+        <button type="submit" class="w-full bg-slate-900 text-white font-bold p-3 rounded-lg text-sm hover:bg-slate-800 transition shadow-sm">Initialize Submission</button>
+    </form>
+</div>
+{% endblock %}
+
+
+
+
+
+home.html
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center py-20 bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+    <h1 class="text-5xl font-extrabold text-slate-800 tracking-tight">Next-Gen Operational Infrastructure</h1>
+    <p class="mt-4 text-xl text-slate-500 max-w-2xl mx-auto">We provide scalable cloud systems, business automation matrices, and end-to-end encryption frameworks for modern tech ecosystems.</p>
+    <div class="mt-8"><a href="/contact/" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition">Get In Touch</a></div>
+</div>
+{% endblock %}
+
+
+
+
+
+about.html
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="text-center py-20 bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
+    <h1 class="text-5xl font-extrabold text-slate-800 tracking-tight">Next-Gen Operational Infrastructure</h1>
+    <p class="mt-4 text-xl text-slate-500 max-w-2xl mx-auto">We provide scalable cloud systems, business automation matrices, and end-to-end encryption frameworks for modern tech ecosystems.</p>
+    <div class="mt-8"><a href="/contact/" class="bg-slate-900 text-white px-6 py-3 rounded-lg font-semibold hover:bg-slate-800 transition">Get In Touch</a></div>
+</div>
+{% endblock %}
+
+
+
+
+
+services.html
+
+{% extends 'base.html' %}
+{% block content %}
+<h1 class="text-3xl font-bold text-slate-900 text-center mb-8">Our Architecture Capabilities</h1>
+<div class="grid md:grid-cols-3 gap-6">
+    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm"><h3 class="font-bold text-lg text-slate-800">Full-Stack Pipelines</h3><p class="mt-2 text-sm text-slate-500">Robust monolithic and distributed system applications optimized for processing throughput.</p></div>
+    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm"><h3 class="font-bold text-lg text-slate-800">Database Engineering</h3><p class="mt-2 text-sm text-slate-500">Relational normalization schemas built for fast data index reads and transactional durability.</p></div>
+    <div class="bg-white p-6 rounded-xl border border-slate-100 shadow-sm"><h3 class="font-bold text-lg text-slate-800">API Gateway Design</h3><p class="mt-2 text-sm text-slate-500">Secure RESTful interfaces utilizing modern validation algorithms and strict response integrity.</p></div>
+</div>
+{% endblock %}
+
+
+
+contact.html
+
+{% extends 'base.html' %}
+{% block content %}
+<div class="max-w-xl mx-auto bg-white p-8 rounded-2xl shadow-sm border border-slate-100">
+    <h1 class="text-3xl font-bold text-slate-900 mb-2">Connect With Us</h1>
+    <p class="text-sm text-slate-500 mb-6">PROJECT</p>
+    
+    {% if messages %}
+        {% for message in messages %}
+            <div class="p-4 mb-6 rounded-xl text-sm font-semibold {% if 'success' in message.tags %}bg-emerald-50 text-emerald-700 border border-emerald-200{% else %}bg-rose-50 text-rose-700 border border-rose-200{% endif %}">
+                {{ message }}
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <form method="POST" class="space-y-5">
+        {% csrf_token %}
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Full Name</label><input type="text" name="name" value="{{ name }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Email Address</label><input type="email" name="email" value="{{ email }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Subject Matter</label><input type="text" name="subject" value="{{ subject }}" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition"></div>
+        <div><label class="block text-xs font-bold uppercase tracking-wider text-slate-600 mb-2">Message Body</label><textarea name="message" rows="4" required class="w-full bg-slate-50 border border-slate-200 rounded-lg p-3 text-sm focus:outline-none focus:border-cyan-500 transition">{{ message }}</textarea></div>
+        <button type="submit" class="w-full bg-slate-900 text-white font-bold p-3 rounded-lg text-sm hover:bg-slate-800 transition shadow-sm">Initialize Submission</button>
+    </form>
+</div>
+{% endblock %}
