@@ -1,1 +1,103 @@
+models.py
 
+from django.db import models
+
+class Enquiry(models.Model):
+    # Enforces discrete state machine tracking for system enquiries
+    STATUS_CHOICES = [
+        ('Pending', 'Pending'),
+        ('Resolved', 'Resolved'),
+    ]
+
+    # PRIMARY KEY (auto-created by Django as: id INTEGER NOT NULL PRIMARY KEY AUTOINCREMENT)
+    
+    # Structural Attributes & Constraints
+    name = models.CharField(
+        max_length=100, 
+        help_text="The full identity name of the contact sender."
+    )
+    email = models.EmailField(
+        max_length=254, 
+        help_text="Validated electronic communication address."
+    )
+    subject = models.CharField(
+        max_length=200, 
+        help_text="Categorized header subject of the message query."
+    )
+    message = models.TextField(
+        help_text="Unbounded plain-text transactional message content body."
+    )
+    status = models.CharField(
+        max_length=20, 
+        choices=STATUS_CHOICES, 
+        default='Pending',
+        help_text="Workflow execution status mapping tracking flag."
+    )
+    created_at = models.DateTimeField(
+        auto_now_add=True, 
+        help_text="Automated database-level timestamp generated upon row insert."
+    )
+
+    class Meta:
+        db_table = 'app_enquiries'  # Explicitly custom named database table
+        verbose_name = 'Customer Enquiry'
+        verbose_name_plural = 'Customer Enquiries'
+
+
+
+
+
+schema_export.sql
+
+
+-- --------------------------------------------------------
+-- Table Structure for 'app_enquiries'
+-- Target Engine Compatibility: SQLite3 / PostgreSQL / MySQL
+-- --------------------------------------------------------
+
+CREATE TABLE IF NOT EXISTS "app_enquiries" (
+    "id" integer NOT NULL PRIMARY KEY AUTOINCREMENT,
+    "name" varchar(100) NOT NULL,
+    "email" varchar(254) NOT NULL,
+    "subject" varchar(200) NOT NULL,
+    "message" text NOT NULL,
+    "status" varchar(20) NOT NULL DEFAULT 'Pending',
+    "created_at" datetime NOT NULL
+);
+
+-- --------------------------------------------------------
+-- Performance Index Optimization
+-- Speeds up search queries when filtering records by status or date
+-- --------------------------------------------------------
+CREATE INDEX IF NOT EXISTS "app_enquiries_status_idx" 
+ON "app_enquiries" ("status");
+
+CREATE INDEX IF NOT EXISTS "app_enquiries_created_at_idx" 
+ON "app_enquiries" ("created_at");
+
+    def __str__(self):
+        return f"[{self.status}] {self.name} - {self.subject}"
+
+
+
+
+
+
+database_export.json
+
+
+
+[
+    {
+        "model": "core.enquiry",
+        "pk": 1,
+        "fields": {
+            "name": "John Doe",
+            "email": "johndoe@example.com",
+            "subject": "System Upgrade Query",
+            "message": "Hello, I am looking to upgrade our deployment parameters safely.",
+            "status": "Pending",
+            "created_at": "2026-07-09T14:00:00.000Z"
+        }
+    }
+]
